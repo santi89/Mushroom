@@ -1,8 +1,9 @@
 <template>
   <f7-page name="signin">         
         <f7-page no-hairlines-md>
+          
       <div class="wrapper">
-         <img class="image--cover" :src="image_url" alt="">
+         <img class="image--cover" src="https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png" alt="">
       </div>
 
           <f7-login-screen-title>Login</f7-login-screen-title>
@@ -17,10 +18,9 @@
         <f7-button outline @click="signIn">Sign in</f7-button>
         <br>
         <div style="text-align:center;">
-            <f7-link v-if="show_resend_email" @click="resendEmail" :color="color(time_left)">Resend Confirmation Email<span v-if="time_left>0">&nbsp; {{time_left}}</span></f7-link><br>
-            <f7-link href="/signup/">Don't have an account? Sign up</f7-link><br>
+            <!-- <f7-link v-if="show_resend_email" @click="resendEmail" :color="color(time_left)">Resend Confirmation Email<span v-if="time_left>0">&nbsp; {{time_left}}</span></f7-link><br> -->
+            <f7-link href="/signup/" >Don't have an account? Sign up</f7-link><br>
             <f7-link @click="forgetPassword">Forget Password</f7-link>
-
         </div>
     </f7-block>
         </f7-page>
@@ -43,6 +43,7 @@ export default {
           f7.loginScreen.close();
         });
       }
+    
 
    },
 

@@ -6,7 +6,7 @@ const FileModule = {
      files: null,
      images: [],
    },
-   getters: {
+   getters:{
      image_url: (state) => state.image_url,
      files: (state) => state.files,
      images: (state) => state.images,

@@ -3,8 +3,7 @@
     <f7-navbar title="Sign up" back-link="back"></f7-navbar>
 
     <div class="wrapper">
-      <img class="image--cover" :src="image_url" alt="" @click="launchFilePicker">
-     
+      <img class="image--cover" src="src/assets/user_male_circle_filled1600.png" alt="" @click="launchFilePicker">    
     </div>
 
     <f7-list no-hairlines-md>
@@ -97,23 +96,29 @@ export default {
       phone_number: null,
     };
   },
-//   computed:{
-//     image_url(){
-//       return this.$store.getters.image_url; 
-//     },
-//     files(){
-//       return this.$store.getters.files;
-//     }
+  computed:{
+    image_url(){
+      return this.$store.getters.image_url; 
+      
+    },
+    files(){
+      return this.$store.getters.files;
+    }
 
-//   },
-//   methods:{
-//     launchFilePicker(){
-//       this.$ref.file.click()
-//     },
-//     onFilePicked(){
-//       this.$store.dispatch('readFile','setImageURL')
-//     }
-//   }
+  },
+  methods:{
+    launchFilePicker(){
+      this.$ref.file.click()
+    },
+    onFilePicked(){
+     this.$store.dispatch('readFile','setImageURL')
+    }
+  },
+  actions:{
+    
+       
+     
+  }
 };
 </script>
 
