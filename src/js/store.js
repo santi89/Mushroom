@@ -2,8 +2,7 @@ import { createStore } from "framework7/lite";
 
 const store = createStore({
   state: {
-    image_url:
-      "https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png",
+    image_url:"https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png",
     files: null,
     images: [],
     alert_message: null,
@@ -35,7 +34,7 @@ const store = createStore({
       }
     },
   },
-  modules: {},
+ 
   mutations: {
     setImageURL(state, payload) {
       state.image_url = payload;

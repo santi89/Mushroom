@@ -4,11 +4,13 @@ import FormPage from "../pages/form.vue";
 import SignIn from "../pages/auth/signin.vue";
 import SignUp from "../pages/auth/signup.vue";
 import EditProfile from "../pages/auth/editProfile.vue";
+import AddProject from "../pages/manage/addProject.vue";
 
 import DynamicRoutePage from "../pages/dynamic-route.vue";
 import RequestAndLoad from "../pages/request-and-load.vue";
 import NotFoundPage from "../pages/404.vue";
 
+ 
 var routes = [
   {
     path: "/",
@@ -25,6 +27,10 @@ var routes = [
   {
     path: "/editprofile/",
     component: EditProfile,
+  },
+  {
+    path: "/addproject/",
+    component: AddProject,
   },
   {
     path: "/signup/",
@@ -90,6 +96,7 @@ var routes = [
     path: "(.*)",
     component: NotFoundPage,
   },
+ 
 ];
 
 export default routes;

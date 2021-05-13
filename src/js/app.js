@@ -21,6 +21,7 @@ import App from '../components/app.vue';
 // Init Framework7-Vue Plugin
 Framework7.use(Framework7Vue);
 
+
 // Init App
 const app = createApp(App);
 

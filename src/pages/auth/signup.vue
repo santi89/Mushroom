@@ -3,7 +3,7 @@
     <f7-navbar title="Sign up" back-link="back"></f7-navbar>
 
     <div class="wrapper">
-      <img class="image--cover" src="src/assets/user_male_circle_filled1600.png" alt="" @click="launchFilePicker">    
+      <img class="image--cover" src="/user_male_circle_filled1600.png" alt="" @click="launchFilePicker">    
     </div>
 
     <f7-list no-hairlines-md>
@@ -127,7 +127,7 @@ export default {
   text-align: center;
 }
 
-.image--cover1 {
+.image--cover {
   width: 150px;
   height: 150px;
   border-radius: 50%;

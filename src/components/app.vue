@@ -36,7 +36,7 @@
       <f7-view id="view-home" main tab tab-active url="/"></f7-view>
 
       <!-- Catalog View -->
-      <f7-view id="view-managed" name="managed" tab url="/managed/"></f7-view>
+      <f7-view id="view-managed" name="signin" tab url="/signin/"></f7-view>
 
       <!-- Settings View -->
       <f7-view id="view-editprofile" name="editprofile" tab url="/editprofile/"></f7-view>
@@ -49,6 +49,7 @@
   import { f7, f7ready } from 'framework7-vue';
   import { getDevice }  from 'framework7/lite-bundle';
   import cordovaApp from '../js/cordova-app.js';
+
 
   import routes from '../js/routes.js';
   import store from '../js/store';

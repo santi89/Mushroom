@@ -29,9 +29,11 @@
     "framework7": "^6.0.16",
     "framework7-icons": "^4.0.2",
     "framework7-vue": "^6.0.16",
+    "i18n": "^0.13.3",
     "skeleton-elements": "^3.3.0",
     "swiper": "^6.5.8",
-    "vue": "^3.0.11"
+    "vue": "^3.0.11",
+    "vue-i18n": "^8.24.4"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",
