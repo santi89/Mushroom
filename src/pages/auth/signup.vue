@@ -3,7 +3,8 @@
     <f7-navbar title="Sign up" back-link="back"></f7-navbar>
 
     <div class="wrapper">
-      <img class="image--cover" src="/user_male_circle_filled1600.png" alt="" @click="launchFilePicker">    
+      <img class="image--cover" :src="image_url" />
+      <input type="file" style="" @change="onFileChange" />
     </div>
 
     <f7-list no-hairlines-md>
@@ -75,12 +76,7 @@
     </f7-list>
     <f7-block>
       <f7-button outline @click="signUp">Sign up</f7-button>
-      <input
-        type="file"
-        ref="file"
-        style="display: none"
-        @change="onFilePicked"
-      />
+      <input type="file" style="display: none" @change="onFileChange" />
     </f7-block>
   </f7-page>
 </template>
@@ -94,31 +90,51 @@ export default {
       username: null,
       password: null,
       phone_number: null,
+      image_url: "",
+      file: null,
     };
   },
-  computed:{
-    image_url(){
-      return this.$store.getters.image_url; 
-      
+  computed: {},
+  methods: {
+    launchFilePicker() {
+      this.$ref.file.click();
     },
-    files(){
-      return this.$store.getters.files;
-    }
 
-  },
-  methods:{
-    launchFilePicker(){
-      this.$ref.file.click()
+    onFileChange: (e) => {
+      var files = e.target.files;
+      if (!files.length) {
+        return;
+      }
+
+      this.createImage(files[0]);
     },
-    onFilePicked(){
-     this.$store.dispatch('readFile','setImageURL')
-    }
+    createImage(files) {
+      var reader = new FileReader();
+      reader.onload = (e) => {
+        this.image_url = reader.result;
+      };
+      reader.readAsDataURL(files);
+    },
   },
-  actions:{
-    
-       
-     
-  }
+  actions: {
+    // readFile({ commit }, action_name) {
+    //   const files = event.target.files;
+    //   commit("setFile", files);
+    //   const fileReader = new FileReader();
+    //   let file = files[0];
+    //   if (file["size"] < 2000000) {
+    //     fileReader.readAsDataURL(file);
+    //     fileReader.addEventListener("load", () => {
+    //       var imageUrl = fileReader.result;
+    //       commit(action_name, imageUrl);
+    //     });
+    //     return;
+    //   } else {
+    //     commit("setAlertMessage", "The images size is greater than 2M");
+    //     return;
+    //   }
+    // },
+  },
 };
 </script>
 

@@ -1,5 +1,6 @@
 // Import Vue
 import { createApp } from 'vue';
+// import { createStore } from 'vuex'
 import store from './store'
 
 // Import Framework7
@@ -23,7 +24,7 @@ Framework7.use(Framework7Vue);
 
 
 // Init App
-const app = createApp(App);
+const app = createApp(App,store);
 
 // Register Framework7 Vue components
 registerComponents(app);

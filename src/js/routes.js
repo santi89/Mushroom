@@ -1,16 +1,19 @@
 import HomePage from "../pages/home.vue";
 import AboutPage from "../pages/about.vue";
 import FormPage from "../pages/form.vue";
-import SignIn from "../pages/auth/signin.vue";
+import LogIn from "../pages/auth/login.vue";
 import SignUp from "../pages/auth/signup.vue";
-import EditProfile from "../pages/auth/editProfile.vue";
+import Profile from "../pages/auth/profile.vue";
 import AddProject from "../pages/manage/addProject.vue";
+import AddDevice from "../pages/manage/addDevices.vue";
+import ListManagement from "../pages/manage/listmanagement.vue";
+import Devicelist from "../pages/manage/devicelist.vue";
+import humidityAndtemparature from "../pages/manage/humidityAndTemparatureControl.vue";
 
 import DynamicRoutePage from "../pages/dynamic-route.vue";
 import RequestAndLoad from "../pages/request-and-load.vue";
 import NotFoundPage from "../pages/404.vue";
 
- 
 var routes = [
   {
     path: "/",
@@ -21,16 +24,32 @@ var routes = [
     component: AboutPage,
   },
   {
-    path: "/signin/",
-    component: SignIn,
+    path: "/login/",
+    component: LogIn,
   },
   {
-    path: "/editprofile/",
-    component: EditProfile,
+    path: "/profile/",
+    component: Profile,
+  },
+  {
+    path: "/humidityAndtemparature/",
+    component: humidityAndtemparature,
   },
   {
     path: "/addproject/",
     component: AddProject,
+  },
+  {
+    path: "/addDevice/",
+    component: AddDevice,
+  },
+  {
+    path: "/devicelist/",
+    component: Devicelist,
+  },
+  {
+    path: "/listmanagement/",
+    component: ListManagement,
   },
   {
     path: "/signup/",
@@ -96,7 +115,6 @@ var routes = [
     path: "(.*)",
     component: NotFoundPage,
   },
- 
 ];
 
 export default routes;
