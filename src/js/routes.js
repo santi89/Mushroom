@@ -1,11 +1,10 @@
-import HomePage from "../pages/home.vue";
+import HomePage from "../pages/manage/home.vue";
 import AboutPage from "../pages/about.vue";
 import FormPage from "../pages/form.vue";
 import LogIn from "../pages/auth/login.vue";
 import SignUp from "../pages/auth/signup.vue";
 import Profile from "../pages/auth/profile.vue";
 import AddProject from "../pages/manage/addProject.vue";
-import AddDevice from "../pages/manage/addDevices.vue";
 import ListManagement from "../pages/manage/listmanagement.vue";
 import Devicelist from "../pages/manage/devicelist.vue";
 import humidityAndtemparature from "../pages/manage/humidityAndTemparatureControl.vue";
@@ -39,10 +38,7 @@ var routes = [
     path: "/addproject/",
     component: AddProject,
   },
-  {
-    path: "/addDevice/",
-    component: AddDevice,
-  },
+
   {
     path: "/devicelist/",
     component: Devicelist,

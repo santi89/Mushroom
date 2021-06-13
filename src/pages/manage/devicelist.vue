@@ -1,36 +1,78 @@
 <template>
-  <f7-page>  
-         <f7-navbar back-link="back" title="Device"> </f7-navbar>
+  <f7-page>
+    <f7-navbar back-link="back" title="Device"> </f7-navbar>
     <f7-block>
+      <f7-block-title class="block-title">List device</f7-block-title>
+    </f7-block>
+
+    <f7-fab position="right-top" color="teal" href="">
+      <f7-icon ios="f7:plus" aurora="f7:plus" md="material:add"></f7-icon>
+      <f7-button popup-open=".addDevice-popup"> </f7-button>
+    </f7-fab>
+
+    <f7-card>
       <f7-list>
         <!-- controll page  -->
-         <f7-list-item link="/humidityAndtemparature/" title="Controll device 1" ></f7-list-item> 
+        <f7-list-item
+          link="/humidityAndtemparature/"
+          title="Controll device 1"
+        ></f7-list-item>
         <f7-list-item link="#">Link 2</f7-list-item>
         <f7-list-item link="#">Link 3</f7-list-item>
-        <f7-list-item link="#">Link 4</f7-list-item>
-        <f7-list-item link="#">Link 5</f7-list-item>           
       </f7-list>
+    </f7-card>
 
-    </f7-block>
-      <f7-fab position="center-bottom" color="peat" href="/addDevice/" >
-      <f7-icon ios="f7:plus" aurora="f7:plus" md="material:add"></f7-icon>
-      <f7-icon ios="f7:xmark" aurora="f7:xmark" md="material:close"></f7-icon>
-    </f7-fab>
-     
+    <!-- popup adddevice -->
+    <f7-popup
+      class="addDevice-popup"
+      :opened="popupOpened"
+      @popup:closed="popupOpened = false"
+    >
+      <f7-page>
+        <f7-navbar title="Add Device">
+          <f7-nav-right>
+            <f7-link popup-close>close</f7-link>
+          </f7-nav-right>
+        </f7-navbar>
+        <f7-block>
+          <f7-list no-hairlines-md>
+            <f7-list-input
+              clear-button
+              outline
+              floating-label
+              label="DeviceToken"
+              :value="deviceKey"
+              @input="deviceKey = $event.target.value"
+              type="text"
+            >
+            </f7-list-input>
+          </f7-list>
+        </f7-block>
+        <!-- btn -->
+        <f7-block>
+          <f7-block>
+            <f7-button onclick="" popup-close raised fill>Add</f7-button>
+          </f7-block>
+        </f7-block>
+      </f7-page>
+    </f7-popup>
   </f7-page>
 </template>
 
 <script>
 export default {
-data(){
-  return{
-deviceHeader:""
-  }
-}
-
-}
+  data() {
+    return {
+      popupOpened: false,
+      deviceKey: "",
+      deviceHeader: "",
+    };
+  },
+};
 </script>
 
-<style>
-
+<style scoped>
+.block-title {
+  font-size:"20px";
+}
 </style>

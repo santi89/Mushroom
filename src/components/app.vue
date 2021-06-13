@@ -60,13 +60,11 @@ export default {
       username,
       password,
       alertLoginData,
-      store
+      
     };
   },
   computed: {
-    show_tabbar() {
-      return f7.store.getters.show_tabbar;
-    },
+    
   },
 };
 </script>
@@ -95,8 +93,7 @@ export default {
       <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
       <f7-view id="view-home" main tab tab-active url="/"></f7-view>
 
-      <!-- Catalog View -->
-      <f7-view id="view-chatgroups" name="chatgroups" tab url="/chatgroups/"></f7-view>
+     
 
       <!-- Settings View -->
       <f7-view id="view-settings" name="editprofile" tab url="/editprofile/"></f7-view>

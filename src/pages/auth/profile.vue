@@ -7,11 +7,15 @@
         class="image--cover"
         :src="image_url"
         alt=""
-        :change="onfilechange"
+        :change="launchFilePicker"
       />
     </div>
     <f7-block>
-      <f7-button outline popup-open=".demo-edit"> Edit</f7-button>
+      <f7-button outline popup-open=".demo-edit" :onclick="!editImg">
+        Edit</f7-button
+      >
+            <input type="file" ref="file" style="display:none;" @change="onFilePicked">
+
     </f7-block>
 
     <f7-list no-hairlines-md>
@@ -31,7 +35,7 @@
       <f7-page>
         <f7-navbar title="edit profile">
           <f7-nav-right>
-            <f7-link popup-close @click="submitEdit">Done</f7-link>
+            <f7-link popup-close>close</f7-link>
           </f7-nav-right>
         </f7-navbar>
         <f7-block>
@@ -57,7 +61,7 @@
               clear-button
             >
             </f7-list-input>
-            <f7-list-input
+            <!-- <f7-list-input
               floating-label
               :value="user.email"
               @input="user.email = $event.target.value"
@@ -77,7 +81,7 @@
               placeholder="Your Username"
               clear-button
             >
-            </f7-list-input>
+            </f7-list-input> -->
 
             <f7-list-input
               floating-label
@@ -93,7 +97,7 @@
           </f7-list>
         </f7-block>
         <f7-block>
-          <f7-button> </f7-button>
+          <f7-button  @click="submitEdit">Add</f7-button>
         </f7-block>
       </f7-page>
     </f7-popup>
@@ -101,50 +105,71 @@
 </template>
 
 <script>
-import { f7 } from 'framework7-vue';
+import { f7 } from "framework7-vue";
 export default {
   data() {
-    return{
-
-    image_url:"https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png",
-      user:{
-      firstname: "santi",
-      lastname: "bm",
-      username: "santi",
-      password:"123456",
-      email: "aafa@fdsfsd",
-      phone_number:"020",
+    return {
+    // image_url:
+    //    "https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png",
+      editImg: false,
       popupOpened: false,
-      image:""
-          }
-
-    }
+      user: {
+        firstname: "santi",
+        lastname: "bm",
+        username: "santi",
+        password: "123456",
+        email: "aafa@fdsfsd",
+        phone_number: "020",
+        image: "",
+      },
+    };
   },
-  methods:{
-    onfilechange: (e)=>{
-      var files =e.taget.files;
-      if (!files.length){
-        return
+  methods: {
+    onfilechange: (e) => {
+      var files = e.taget.files;
+      if (!files.length) {
+        return;
         createImage(files[0]);
       }
     },
-    createImage(files){
-      var reader =new FileReader();
-      reader.onload=(e)=>{
-        this.image=e.target.result;
-      }
-      reader.readAsDataURL(files)
+    createImage(files) {
+      var reader = new FileReader();
+      reader.onload = (e) => {
+        this.image = e.target.result;
+      };
+      reader.readAsDataURL(files);
     },
-    submitEdit(user){
-      
-    }
+
+
+    submitEdit() {
+      popup-close
+    },
   },
   computed: {
-  //   image_url(){
-  //     return this.$store.getters.image_url;
-  // }
-},
-}
+      display_name: {
+            get: function () {
+                return this.$store.getters.display_name
+            },
+            set: function (newValue) {
+                this.$store.commit('setDisplayName', newValue)
+            }
+        },
+        image_url() {
+            return this.$store.getters.image_url
+        },
+        files() {
+            return this.$store.getters.files
+        },
+        photo_url() {
+            return this.$store.getters.photo_url
+        }
+  },
+  created() {
+        if (this.photo_url != null) {
+            this.$store.commit('setImageURL', this.photo_url)
+        }
+    }
+};
 </script>
 
 <style scoped>

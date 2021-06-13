@@ -3,8 +3,7 @@
     <f7-navbar title="Sign up" back-link="back"></f7-navbar>
 
     <div class="wrapper">
-      <img class="image--cover" :src="image_url" />
-      <input type="file" style="" @change="onFileChange" />
+      <img class="image--cover" :src="image_url" @click="launchFilePicker" />
     </div>
 
     <f7-list no-hairlines-md>
@@ -76,7 +75,12 @@
     </f7-list>
     <f7-block>
       <f7-button outline @click="signUp">Sign up</f7-button>
-      <input type="file" style="display: none" @change="onFileChange" />
+      <input
+        type="file"
+        ref="file"
+        style="display: none"
+        @change="onFilePicked"
+      />
     </f7-block>
   </f7-page>
 </template>
@@ -90,14 +94,29 @@ export default {
       username: null,
       password: null,
       phone_number: null,
-      image_url: "",
-      file: null,
+      // image_url: "",
+      // file: null,
     };
   },
-  computed: {},
+  computed: {
+    image_url() {
+      const image=this.$store.getters.image_url;
+      return image
+    },
+    files() {
+      return this.$store.getters.files;
+    },
+    signed_up() {
+      return this.$store.getters.signed_up;
+    },
+  },
   methods: {
     launchFilePicker() {
-      this.$ref.file.click();
+      this.$refs.file.click();
+    },
+    onFilePicked() {
+      //read the image file
+      this.$store.dispatch("readFile", "setImageURL");
     },
 
     onFileChange: (e) => {

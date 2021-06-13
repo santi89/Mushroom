@@ -1,5 +1,5 @@
 <template>
-  <f7-page no-hairlines-md theme="#336359">
+  <f7-page no-hairlines-md theme="teal">
     <f7-navbar title="Add Project" back-link="back" >
       <!-- <f7-nav-right fill onclick="">Add</f7-nav-right>      -->
     </f7-navbar>
