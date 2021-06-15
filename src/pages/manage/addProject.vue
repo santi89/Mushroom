@@ -1,6 +1,6 @@
 <template>
   <f7-page no-hairlines-md theme="teal">
-    <f7-navbar title="Add Project" back-link="back" >
+    <f7-navbar title="Add Project" back-link="back">
       <!-- <f7-nav-right fill onclick="">Add</f7-nav-right>      -->
     </f7-navbar>
 
@@ -10,8 +10,8 @@
         floating-label
         label="Project Name"
         type="text"
-        :value="projectname"
-        @input="projectname = $event.target.value"
+        :value="projects.projectname"
+        @input="projects.projectname = $event.target.value"
         required
       ></f7-list-input>
 
@@ -20,8 +20,8 @@
         floating-label
         label="longitude"
         type="number"
-        :value="longtitude"
-        @input="longtitude = $event.target.value"
+        :value="projects.longtitude"
+        @input="projects.longtitude = $event.target.value"
       ></f7-list-input>
 
       <f7-list-input
@@ -29,8 +29,8 @@
         floating-label
         label="tatitude"
         type="number"
-        :value="tatitude"
-        @input="tatitude = $event.target.value"
+        :value="projects.tatitude"
+        @input="projects.tatitude = $event.target.value"
       ></f7-list-input>
 
       <f7-list-input
@@ -38,9 +38,8 @@
         outline
         label="time Start"
         type="Date"
-        :value="timestart"
-        @input="timestart = $event.target.value"
-      
+        :value="projects.timestart"
+        @input="projects.timestart = $event.target.value"
       ></f7-list-input>
 
       <f7-list-input
@@ -48,8 +47,8 @@
         outline
         label="time end"
         type="Date"
-        :value="timeend"
-        @input="timeend = $event.target.value"
+        :value="projects.timeend"
+        @input="projects.timeend = $event.target.value"
       ></f7-list-input>
 
       <f7-list-input
@@ -57,8 +56,8 @@
         outline
         label="device Name"
         type="text"
-        :value="devicename"
-        @input="devicename = $event.target.value"
+        :value="projects.devicename"
+        @input="projects.devicename = $event.target.value"
       ></f7-list-input>
     </f7-list>
 
@@ -69,28 +68,29 @@
 </template>
 
 <script>
-import { f7} from 'framework7-vue';
+import { f7 } from "framework7-vue";
 
 export default {
   data() {
     return {
-      projectname: "",
-      longtitude: "",
-      tatitude: "",
-      timestart: "",
-      timeend: "",
-      devicename: "",
-      status:""
+      projects: {
+        projectname: "",
+        longtitude: "",
+        tatitude: "",
+        timestart: "",
+        timeend: "",
+        devicename: "",
+        status: "",
+      },
     };
   },
-  created() {
-    
+  created() {},
+  methods: {
+    showdata() {
+      console.log("you are ",projects.projectname);
+     
+    },
   },
-  methods:{
-    showdata(){
-      console.alert(projectname,longitude,tatitude,timestart,timeend,devicename,status);
-    }
-  }
 };
 </script>
 

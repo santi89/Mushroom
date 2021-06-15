@@ -4,12 +4,15 @@
     <f7-navbar :sliding="false">
       <f7-nav-title class="">Mushroom App</f7-nav-title>
       <f7-nav-right>
-        <f7-link
-          icon-ios="f7:bell"
-          icon-aurora="f7:bell"
-          icon-md="material:notifications_none"
-          icon-f7="bell"
-        ></f7-link>
+        <f7-link popover-open=".popover-noti">
+          <f7-icon
+            ios="f7:bell_circle"
+            aurora="f7:bell_circle"
+            md="material:notifications"
+          >
+             <f7-badge color="red">5</f7-badge>
+          </f7-icon>
+        </f7-link>
         <f7-link
           panel-open="right"
           icon-ios="f7:menu"
@@ -19,6 +22,16 @@
         ></f7-link>
       </f7-nav-right>
     </f7-navbar>
+    <!-- popover list notice -->
+    <f7-popover class="popover-noti">
+      <f7-list>
+        <f7-list-item link="#" popover-close title="Dialog"></f7-list-item>
+        <f7-list-item link="#" popover-close title="Tabs"></f7-list-item>
+        <f7-list-item link="#" popover-close title="Side Panels"></f7-list-item>
+        <f7-list-item link="#" popover-close title="List View"></f7-list-item>
+        <f7-list-item link="#" popover-close title="Form Inputs"></f7-list-item>
+      </f7-list>
+    </f7-popover>
 
     <!-- Left panel with cover effect-->
     <f7-panel right cover theme-dark>
@@ -27,7 +40,9 @@
           <div class="wrapper">
             <img class="image--cover" :src="photo_url" alt />
           </div>
-          <f7-block style="text-align: center; margin-top:1px; " >{{ display_name }}</f7-block>
+          <f7-block style="text-align: center; margin-top: 1px">{{
+            display_name
+          }}</f7-block>
 
           <f7-list>
             <f7-list-item
@@ -55,10 +70,6 @@
       <f7-card-content :padding="false">
         <f7-list>
           <f7-list-item link="/devicelist/" :title="projectName"></f7-list-item>
-          <f7-list-item link="#">Link 2</f7-list-item>
-          <f7-list-item link="#">Link 3</f7-list-item>
-          <f7-list-item link="#">Link 4</f7-list-item>
-          <f7-list-item link="#">Link 5</f7-list-item>
         </f7-list>
       </f7-card-content>
     </f7-card>
@@ -74,8 +85,8 @@ export default {
   data() {
     return {
       projectName: "First project",
-      photo_url:null,
-      display_name:"santi"
+      photo_url: null,
+      display_name: "santi",
     };
   },
   methods: {

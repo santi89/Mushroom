@@ -7,8 +7,8 @@
     ></f7-navbar>
 
     <f7-toolbar tabbar top>
-      <f7-link tab-link="#tab-1" tab-link-active>Tab 1</f7-link>
-      <f7-link tab-link="#tab-2">Tab 2</f7-link>
+      <f7-link tab-link="#tab-1" tab-link-active>Humidity</f7-link>
+      <f7-link tab-link="#tab-2">Temperature</f7-link>
     </f7-toolbar>
 
     <f7-tabs swipeable>
@@ -42,7 +42,7 @@
             <f7-list class="list-container">
               <f7-list-input
                 class=""
-                floating-label
+                
                 label="Start"
                 type="time"
                 outline
@@ -50,17 +50,17 @@
                 @input="setTime.start = e.target.value"
                 ><f7-icon
                   icon="demo-list-icon"
-                  slot="media"
+            
                 ></f7-icon></f7-list-input
               ><f7-list-input
                 class=""
-                floating-label
+                
                 label="Worked"
                 type="time"
                 outline
                 :value="setTime.work"
                 @input="setTime.work = e.target.value"
-                ><f7-icon icon="demo-list-icon" slot="media"></f7-icon
+                ><f7-icon icon="demo-list-icon" ></f7-icon
               ></f7-list-input>
 
               <f7-list-input
@@ -71,7 +71,7 @@
                 outline
                 :value="setTime.delay"
                 @input="setTime.delay = e.target.value"
-                ><f7-icon icon="demo-list-icon" slot="media"></f7-icon
+                ><f7-icon icon="demo-list-icon"></f7-icon
               ></f7-list-input>
             </f7-list>
             <f7-list-item>
@@ -82,7 +82,7 @@
             </f7-list-item>
           </f7-card>
           <!-- list timer -->
-          <div class="data-table data-table-init card">
+          <div class="data-table data-table-init card bg-color-teal">
             <!-- Card header -->
             <div class="card-header">
               <!-- Default table header -->
@@ -94,7 +94,7 @@
               <!-- Selected table header -->
               <div class="data-table-header-selected">
                 <!-- Selected table title -->
-                <div class="data-table-title-selected">
+                <div class="data-table-title-selected text-color-black">
                   <span class="data-table-selected-count"></span> items selected
                 </div>
                 <!-- Selected table actions -->
@@ -241,28 +241,9 @@
 
           <!-- list timer -->
           <f7-block-title></f7-block-title>
-          <!-- <f7-block>
-             <f7-list > 
-            <f7-card
-              class="bg-color-teal"
-              no-hairlines
-              v-for="(item, index) in setTime"
-              :key="index"
-            >
-              <f7-list-item>
-                <f7-list-item outlined> start : {{ item.start }} </f7-list-item>
-                <f7-list-item outlined> work : {{ item.worked }}</f7-list-item>
-              </f7-list-item>
-              <f7-list-item class="">
-                <f7-list-item outlined> delay : {{ item.delay }} </f7-list-item>
+         
 
-                <f7-toggle color="blue"></f7-toggle>
-              </f7-list-item>
-            </f7-card>
-             </f7-list> 
-          </f7-block> -->
-
-          <div class="data-table data-table-init card">
+          <div class="data-table data-table-init card bg-color-teal">
             <!-- Card header -->
             <div class="card-header">
               <!-- Default table header -->
@@ -274,7 +255,7 @@
               <!-- Selected table header -->
               <div class="data-table-header-selected">
                 <!-- Selected table title -->
-                <div class="data-table-title-selected">
+                <div class="data-table-title-selected text-color-black">
                   <span class="data-table-selected-count"></span> items selected
                 </div>
                 <!-- Selected table actions -->
@@ -336,7 +317,7 @@ export default {
           delay: "12mn",
         },
         {
-          start: "12:22pm",
+          start: "12pm",
           worked: "22am",
           delay: "12mn",
         },

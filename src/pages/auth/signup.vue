@@ -5,6 +5,7 @@
     <div class="wrapper">
       <img class="image--cover" :src="image_url" @click="launchFilePicker" />
     </div>
+<f7-block>
 
     <f7-list no-hairlines-md>
       <f7-list-input
@@ -73,6 +74,7 @@
       >
       </f7-list-input>
     </f7-list>
+</f7-block>
     <f7-block>
       <f7-button outline @click="signUp">Sign up</f7-button>
       <input

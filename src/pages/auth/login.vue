@@ -1,5 +1,5 @@
 <template>
-  <f7-page name="signin">
+  <f7-page name="signin" theme-teal>
     <f7-page no-hairlines-md>
       <div class="wrapper">
         <img
@@ -10,30 +10,34 @@
       </div>
 
       <f7-login-screen-title>Login</f7-login-screen-title>
-      <f7-list Strong>
-        <f7-list-input      
-         floating-label  
-          :value="email"
-          @input="email = $event.target.value"
-          label="E-mail"
-          type="email"
-          placeholder="Your e-mail"
-          clear-button
-        >
-        </f7-list-input>
-        <f7-list-input
-          floating-label
-          :value="password"
-          @input="password = $event.target.value"
-          label="Password"
-          type="password"
-          placeholder="Your password"
-          clear-button
-        >
-        </f7-list-input>
-      </f7-list>
       <f7-block>
-        <f7-button outline @click="logInmessage" href="/">Login</f7-button>
+        <f7-list Strong>
+          <f7-list-input
+            floating-label
+            :value="email"
+            @input="email = $event.target.value"
+            label="E-mail"
+            type="email"
+            placeholder="Your e-mail"
+            clear-button
+          >
+          </f7-list-input>
+          <f7-list-input
+            floating-label
+            :value="password"
+            @input="password = $event.target.value"
+            label="Password"
+            type="password"
+            placeholder="Your password"
+            clear-button
+          >
+          </f7-list-input>
+        </f7-list>
+      </f7-block>
+      <f7-block>
+        <f7-button outline @click="logInmessage" href="/" class="btn-login"
+          >Login</f7-button
+        >
         <br />
         <div style="text-align: center">
           <!-- <f7-link v-if="show_resend_email" @click="resendEmail" :color="color(time_left)">Resend Confirmation Email<span v-if="time_left>0">&nbsp; {{time_left}}</span></f7-link><br> -->
@@ -83,5 +87,9 @@ export default {
   margin: 20px;
   object-fit: cover;
   object-position: center;
+}
+.btn-login {
+  width:100%;
+   
 }
 </style>
