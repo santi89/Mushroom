@@ -5,7 +5,6 @@ import LogIn from "../pages/auth/login.vue";
 import SignUp from "../pages/auth/signup.vue";
 import Profile from "../pages/auth/profile.vue";
 import AddProject from "../pages/manage/addProject.vue";
-import ListManagement from "../pages/manage/listmanagement.vue";
 import Devicelist from "../pages/manage/devicelist.vue";
 import humidityAndtemparature from "../pages/manage/humidityAndTemparatureControl.vue";
 
@@ -42,10 +41,6 @@ var routes = [
   {
     path: "/devicelist/",
     component: Devicelist,
-  },
-  {
-    path: "/listmanagement/",
-    component: ListManagement,
   },
   {
     path: "/signup/",
