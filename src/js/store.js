@@ -1,9 +1,10 @@
 import { createStore } from "vuex";
-import Filemodule from "./Filemodule";
+
 
 const store = createStore({
   modules: {
-    file: Filemodule,
+  
+    
   },
   state: {
     alert_message: null,

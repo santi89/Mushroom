@@ -6,6 +6,7 @@ import SignUp from "../pages/auth/signup.vue";
 import Profile from "../pages/auth/profile.vue";
 import AddProject from "../pages/manage/addProject.vue";
 import Devicelist from "../pages/manage/devicelist.vue";
+import Notificate from "../pages/manage/notifications.vue";
 import humidityAndtemparature from "../pages/manage/humidityAndTemparatureControl.vue";
 
 import DynamicRoutePage from "../pages/dynamic-route.vue";
@@ -16,6 +17,10 @@ var routes = [
   {
     path: "/",
     component: HomePage,
+  },
+  {
+    path: "/notificate/",
+    component: Notificate,
   },
   {
     path: "/about/",

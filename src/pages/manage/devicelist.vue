@@ -12,16 +12,11 @@
 
     <f7-card>
       <f7-list>
-        <!-- controll page  -->
-        <f7-list-item
-          link="/humidityAndtemparature/"
-          title="Controll device 1"
-        ></f7-list-item>
-        <f7-list-item link="#">Link 2</f7-list-item>
-        <f7-list-item link="#">Link 3</f7-list-item>
+        <f7-list-item link="/humidityAndtemparature/" title="Controll device 1">
+        </f7-list-item>
+        <f7-list-item link="#"> aa </f7-list-item>
       </f7-list>
     </f7-card>
-
     <!-- popup adddevice -->
     <f7-popup
       class="addDevice-popup"
@@ -68,11 +63,34 @@ export default {
       deviceHeader: "",
     };
   },
+  // setup() {
+  //   // helpers data for axis
+  //   const dates = [];
+  //   const today = new Date();
+  //   const year = today.getFullYear();
+  //   const month = today.getMonth();
+  //   for (let i = 0; i < 4; i += 1) {
+  //     dates.push(new Date(year, month - (3 - i)));
+  //   }
+  //   const axisDateFormat = Intl.DateTimeFormat(undefined, {
+  //     month: "short",
+  //     year: "numeric",
+  //   });
+  //   const tooltipDateFormat = Intl.DateTimeFormat(undefined, {
+  //     month: "long",
+  //     year: "numeric",
+  //   });
+  //   return {
+  //     dates,
+  //     axisDateFormat,
+  //     tooltipDateFormat,
+  //   };
+  // },
 };
 </script>
 
 <style scoped>
 .block-title {
-  font-size:"20px";
+  font-size: "20px";
 }
 </style>

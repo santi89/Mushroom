@@ -1,166 +1,175 @@
 <template>
-  <f7-page name="signup">
-    <f7-navbar title="Sign up" back-link="back"></f7-navbar>
+  <f7-page name="signup" bg-color-teal>
+    <!-- <f7-navbar title="Sign up" back-link="back" ></f7-navbar> -->
 
-    <div class="wrapper">
+    <!-- <div class="wrapper">
       <img class="image--cover" :src="image_url" @click="launchFilePicker" />
-    </div>
-<f7-block>
-
-    <f7-list no-hairlines-md>
-      <f7-list-input
-        required
-        floating-label
-        :value="firstname"
-        @input="firstname = $event.target.value"
-        label="FirstName"
-        type="text"
-        placeholder="Your FirstName"
-        clear-button
-      >
-      </f7-list-input>
-      <f7-list-input
-        floating-label
-        :value="lastname"
-        @input="lastname = $event.target.value"
-        label="LastName"
-        type="text"
-        placeholder="Your LastName"
-        clear-button
-      >
-      </f7-list-input>
-      <f7-list-input
-        floating-label
-        :value="email"
-        @input="email = $event.target.value"
-        label="E-mail"
-        type="email"
-        placeholder="Your e-mail"
-        required
-        clear-button
-      >
-      </f7-list-input>
-      <f7-list-input
-        floating-label
-        :value="username"
-        @input="username = $event.target.value"
-        label="Username"
-        type="text"
-        placeholder="Your Username"
-        clear-button
-      >
-      </f7-list-input>
-
-      <f7-list-input
-        floating-label
-        :value="password"
-        @input="password = $event.target.value"
-        label="Password"
-        type="password"
-        placeholder="Your password"
-        required
-        clear-button
-      >
-      </f7-list-input>
-      <f7-list-input
-        floating-label
-        :value="phone_number"
-        @input="phone_number = $event.target.value"
-        label="Phone Number"
-        type="text"
-        placeholder="Your Phone Number"
-        required
-        clear-button
-      >
-      </f7-list-input>
-    </f7-list>
-</f7-block>
+    </div> -->
     <f7-block>
-      <f7-button outline @click="signUp">Sign up</f7-button>
-      <input
+      <div style="text-align: center">
+        <h1>Sign Up</h1>
+      </div>
+
+      <f7-list no-hairlines-md>
+        <f7-list-input
+          required
+          outline
+          floating-label
+          :value="user.firstname"
+          @input="user.firstname = $event.target.value"
+          label="FirstName"
+          type="text"
+          clear-button
+        >
+        </f7-list-input>
+        <f7-list-input
+          floating-label
+          :value="user.lastname"
+          @input="user.lastname = $event.target.value"
+          label="LastName"
+          type="text"
+          outline
+          clear-button
+        >
+        </f7-list-input>
+        <f7-list-input
+          floating-label
+          :value="user.email"
+          @input="user.email = $event.target.value"
+          label="E-mail"
+          type="email"
+          outline
+          required
+          clear-button
+        >
+        </f7-list-input>
+        <f7-list-input
+          floating-label
+          :value="user.username"
+          @input="user.username = $event.target.value"
+          label="Username"
+          type="text"
+          outline
+          clear-button
+        >
+        </f7-list-input>
+
+        <f7-list-input
+          floating-label
+          :value="user.password"
+          @input="user.password = $event.target.value"
+          label="Password"
+          type="password"
+          outline
+          required
+          clear-button
+          autocomplete="off"
+        >
+        </f7-list-input>
+        <f7-list-input
+          floating-label
+          :value="user.phone"
+          @input="user.phone = $event.target.value"
+          label="Phone Number"
+          type="text"
+          outline
+          required
+          clear-button
+        >
+        </f7-list-input>
+      <f7-list-item :value="dep[0]" @input="user.department =$event.target.value" disabled>
+
+      </f7-list-item>
+      </f7-list>
+      <f7-block>
+        <f7-button outline round @click="signup">Sign up</f7-button>
+      </f7-block>
+    </f7-block>
+    <f7-block>
+      <div class="log-switch">
+        Already have account. <f7-link href="/login/">Login </f7-link>
+      </div>
+      <!-- <input
         type="file"
         ref="file"
         style="display: none"
         @change="onFilePicked"
-      />
+      /> -->
     </f7-block>
   </f7-page>
 </template>
 <script>
+ import { http } from '@/http';
 export default {
   data() {
     return {
-      firstname: null,
-      lastname: null,
-      email: null,
-      username: null,
-      password: null,
-      phone_number: null,
-      // image_url: "",
-      // file: null,
+      dep: [],
+      user: {
+        firstname: "",
+        lastname: "",
+        username: "",
+        password: "",
+        status: "",
+        department: "",
+        email: "",
+        phone: "",
+      },
     };
   },
-  computed: {
-    image_url() {
-      const image=this.$store.getters.image_url;
-      return image
-    },
-    files() {
-      return this.$store.getters.files;
-    },
-    signed_up() {
-      return this.$store.getters.signed_up;
-    },
+  created() {
+    this.fecth_dep();
   },
   methods: {
-    launchFilePicker() {
-      this.$refs.file.click();
+    fecth_dep() {
+      http
+        .get("/api/dep/sig")
+        .then((Response) => {
+          this.dep = Response;
+        })
+        .catch((err) => {
+          return err;
+        });
     },
-    onFilePicked() {
-      //read the image file
-      this.$store.dispatch("readFile", "setImageURL");
+    signup() {
+      http
+        .post("/api/signup", {
+          firstname: this.user.firstname,
+          lastname: this.user.lastname,
+          username: this.user.username,
+          password: this.user.password,
+          status: this.user.status,
+          department: this.user.department,
+          email: this.user.email,
+          phone: this.user.phone,
+        })
+        .then((Response) => {
+          if (Response.status === 200) {
+            const msg = Response.data.STT;
+            this.msg = msg;
+            this.sheet = true;
+          } else if (
+            Response.data.STT === "PHONE NUMBER HAS USED" ||
+            Response.data.STT === "EMAIL HAS USED" ||
+            Response.data.STT === "USERNAME HAS USED"
+          ) {
+            const msg = Response.data.STT;
+            this.msg = msg;
+            this.sheet = true;
+          } else if (Response.data.STT === "DONE") {
+            this.$router.push("/login")
+          }
+        })
+        .catch(() => {});
     },
-
-    onFileChange: (e) => {
-      var files = e.target.files;
-      if (!files.length) {
-        return;
-      }
-
-      this.createImage(files[0]);
-    },
-    createImage(files) {
-      var reader = new FileReader();
-      reader.onload = (e) => {
-        this.image_url = reader.result;
-      };
-      reader.readAsDataURL(files);
-    },
-  },
-  actions: {
-    // readFile({ commit }, action_name) {
-    //   const files = event.target.files;
-    //   commit("setFile", files);
-    //   const fileReader = new FileReader();
-    //   let file = files[0];
-    //   if (file["size"] < 2000000) {
-    //     fileReader.readAsDataURL(file);
-    //     fileReader.addEventListener("load", () => {
-    //       var imageUrl = fileReader.result;
-    //       commit(action_name, imageUrl);
-    //     });
-    //     return;
-    //   } else {
-    //     commit("setAlertMessage", "The images size is greater than 2M");
-    //     return;
-    //   }
-    // },
   },
 };
 </script>
 
 <style scoped>
 .wrapper {
+  text-align: center;
+}
+.log-switch {
   text-align: center;
 }
 

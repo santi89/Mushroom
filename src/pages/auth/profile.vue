@@ -1,5 +1,5 @@
 <template>
-  <f7-page name="profile">
+  <f7-page name="profile" theme="dark">
     <f7-navbar title="Profile" back-link="Back"></f7-navbar>
 
     <div class="wrapper">
@@ -14,15 +14,19 @@
       <f7-button outline popup-open=".demo-edit" :onclick="!editImg">
         Edit</f7-button
       >
-            <input type="file" ref="file" style="display:none;" @change="onFilePicked">
-
+      <input
+        type="file"
+        ref="file"
+        style="display: none"
+        @change="onFilePicked"
+      />
     </f7-block>
 
-    <f7-list no-hairlines-md>
+    <f7-list no-hairlines-md >
+      <f7-list-item link="" title="FirstName:" :after="user.firstname" ></f7-list-item>
       <f7-list-item title="FirstName:">{{ user.firstname }}</f7-list-item>
       <f7-list-item title="LastName:">{{ user.lastname }}</f7-list-item>
-      <f7-list-item title="userName:">{{ user.username }}</f7-list-item>
-      <f7-list-item title="password:">{{ user.password }}</f7-list-item>
+      <!-- <f7-list-item title="userName:">{{ user.username }}</f7-list-item> -->
       <f7-list-item title="email:">{{ user.email }}</f7-list-item>
       <f7-list-item title="phone:">{{ user.phone }}</f7-list-item>
     </f7-list>
@@ -39,12 +43,12 @@
           </f7-nav-right>
         </f7-navbar>
         <f7-block>
-          <f7-list no-hairlines-md>
+          <f7-list no-hairlines-md inline-labels>
             <f7-list-input
               required
               floating-label
               :value="user.firstname"
-              @input="firstname = $event.target.value"
+              @input="user.firstname = $event.target.value"
               label="FirstName"
               type="text"
               placeholder="Your FirstName"
@@ -71,23 +75,12 @@
               required
               clear-button
             >
-            </f7-list-input>
-            <f7-list-input
-              floating-label
-              :value="user.username"
-              @input="user.username = $event.target.value"
-              label="Username"
-              type="text"
-              placeholder="Your Username"
-              clear-button
-            >
             </f7-list-input> -->
-
             <f7-list-input
               floating-label
-              :value="user.phone_number"
-              @input="user.phone_number = $event.target.value"
-              label="Phone Number"
+              :value="user.phone"
+              @input="user.phone = $event.target.value"
+              label="Phone"
               type="text"
               placeholder="Your Phone Number"
               required
@@ -97,20 +90,26 @@
           </f7-list>
         </f7-block>
         <f7-block>
-          <f7-button  @click="submitEdit">Add</f7-button>
+          <f7-button @click="submitEdit" outline strong>Add</f7-button>
         </f7-block>
       </f7-page>
     </f7-popup>
+
+
+
+
   </f7-page>
 </template>
 
 <script>
 import { f7 } from "framework7-vue";
+import get_users from "../../js/script/get/get_users";
+
 export default {
   data() {
     return {
-    // image_url:
-    //    "https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png",
+      // image_url:
+      //    "https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png",
       editImg: false,
       popupOpened: false,
       user: {
@@ -119,56 +118,50 @@ export default {
         username: "santi",
         password: "123456",
         email: "aafa@fdsfsd",
-        phone_number: "020",
+        phone: "020",
         image: "",
       },
     };
   },
   methods: {
-    onfilechange: (e) => {
-      var files = e.taget.files;
-      if (!files.length) {
-        return;
-        createImage(files[0]);
-      }
-    },
-    createImage(files) {
-      var reader = new FileReader();
-      reader.onload = (e) => {
-        this.image = e.target.result;
-      };
-      reader.readAsDataURL(files);
-    },
-
-
+    // onfilechange: (e) => {
+    //   var files = e.taget.files;
+    //   if (!files.length) {
+    //     return;
+    //     createImage(files[0]);
+    //   }
+    // },
+    // createImage(files) {
+    //   var reader = new FileReader();
+    //   reader.onload = (e) => {
+    //     this.image = e.target.result;
+    //   };
+    //   reader.readAsDataURL(files);
+    // },
     submitEdit() {
-      popup-close
+      popup - close;
     },
   },
   computed: {
-      display_name: {
-            get: function () {
-                return this.$store.getters.display_name
-            },
-            set: function (newValue) {
-                this.$store.commit('setDisplayName', newValue)
-            }
-        },
-        image_url() {
-            return this.$store.getters.image_url
-        },
-        files() {
-            return this.$store.getters.files
-        },
-        photo_url() {
-            return this.$store.getters.photo_url
-        }
+    profile() {
+      const user = JSON.parse(localStorage.getItem("info-user"));
+      //console.log(user.isSuperUser);
+      return {
+        avatar: true,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        title: user.username,
+        email: user.email,
+        phone: user.phone,
+
+      };
+      },
   },
   created() {
-        if (this.photo_url != null) {
-            this.$store.commit('setImageURL', this.photo_url)
-        }
-    }
+  },
+  mounted() {
+    get_users.fatch();
+  },
 };
 </script>
 

@@ -1,19 +1,15 @@
 <template>
   <f7-page :page-content="false">
-    <f7-navbar
-      title="Mushroom Tabs"
-      back-link="Back"
-      bg-color="teal"
-    ></f7-navbar>
+    <f7-navbar title="Mushroom Tabs" back-link="Back" bg-color="teal"></f7-navbar>
 
     <f7-toolbar tabbar top>
-      <f7-link tab-link="#tab-1" tab-link-active>Humidity</f7-link>
-      <f7-link tab-link="#tab-2">Temperature</f7-link>
+      <f7-link tab-link="#tab-humidity" tab-link-active>Humidity</f7-link>
+      <f7-link tab-link="#tab-Temperature">Temperature</f7-link>
     </f7-toolbar>
 
     <f7-tabs swipeable>
       <!-- tabs1 -->
-      <f7-tab id="tab-1" class="page-content" tab-active>
+      <f7-tab id="tab-humidity" class="page-content" tab-active>
         <f7-list>
           <f7-card class="bg-color-teal" title="ON/OFF Manual">
             <f7-list-item>
@@ -22,63 +18,51 @@
             </f7-list-item>
           </f7-card>
           <!-- Humidity -->
-          <f7-card
-            class="bg-color-teal"
-            title="Set Humidity stay at"
-            :padding="false"
-          >
+          <f7-card class="bg-color-teal" title="Set Humidity stay at" :padding="false">
             <f7-list-item>
-              <f7-list-input
-                floating-label
-                label="Value"
-                type="number"
-                outline
-              ></f7-list-input>
+              <f7-list-input floating-label label="Value" type="number" outline></f7-list-input>
               <f7-toggle color="blue"></f7-toggle>
             </f7-list-item>
           </f7-card>
           <!-- time setting -->
           <f7-card class="bg-color-teal" title="Setting Time">
-            <f7-list class="list-container">
+            <f7-list class="list-container" inline-labels>
               <f7-list-input
-                class=""
-                
+                class
                 label="Start"
                 type="time"
                 outline
                 :value="setTime.start"
                 @input="setTime.start = e.target.value"
-                ><f7-icon
-                  icon="demo-list-icon"
-            
-                ></f7-icon></f7-list-input
-              ><f7-list-input
-                class=""
-                
+              >
+                <f7-icon icon="demo-list-icon"></f7-icon>
+              </f7-list-input>
+              <f7-list-input
+                class
                 label="Worked"
                 type="time"
                 outline
                 :value="setTime.work"
                 @input="setTime.work = e.target.value"
-                ><f7-icon icon="demo-list-icon" ></f7-icon
-              ></f7-list-input>
+              >
+                <f7-icon icon="demo-list-icon"></f7-icon>
+              </f7-list-input>
 
               <f7-list-input
-                class=""
+                class
                 floating-label
                 label="Delay"
                 type="time"
                 outline
                 :value="setTime.delay"
                 @input="setTime.delay = e.target.value"
-                ><f7-icon icon="demo-list-icon"></f7-icon
-              ></f7-list-input>
+              >
+                <f7-icon icon="demo-list-icon"></f7-icon>
+              </f7-list-input>
             </f7-list>
             <f7-list-item>
               <span></span>
-              <f7-button outline class="bg-color-primary text-color-black"
-                >add</f7-button
-              >
+              <f7-button outline class="bg-color-primary text-color-black">add</f7-button>
             </f7-list-item>
           </f7-card>
           <!-- list timer -->
@@ -119,17 +103,11 @@
                     </th>
                     <f7-card no-hairlines>
                       <f7-list-item>
-                        <f7-list-item outlined>
-                          start : {{ item.start }}
-                        </f7-list-item>
-                        <f7-list-item outlined>
-                          work : {{ item.worked }}</f7-list-item
-                        >
+                        <f7-list-item outlined>start : {{ item.start }}</f7-list-item>
+                        <f7-list-item outlined>work : {{ item.worked }}</f7-list-item>
                       </f7-list-item>
-                      <f7-list-item class="">
-                        <f7-list-item outlined>
-                          delay : {{ item.delay }}
-                        </f7-list-item>
+                      <f7-list-item class>
+                        <f7-list-item outlined>delay : {{ item.delay }}</f7-list-item>
 
                         <f7-toggle color="blue"></f7-toggle>
                       </f7-list-item>
@@ -165,11 +143,11 @@
                 </f7-list-item>
               </f7-card>
             </ul>
-          </f7-list> -->
+          </f7-list>-->
         </f7-list>
       </f7-tab>
       <!-- tabs2 -->
-      <f7-tab id="tab-2" class="page-content">
+      <f7-tab id="tab-Temperature" class="page-content">
         <f7-list>
           <f7-card class="bg-color-teal" title="ON/OFF Manual">
             <f7-list-item>
@@ -179,19 +157,9 @@
           </f7-card>
 
           <!-- Humidity -->
-          <f7-card
-            class="bg-color-teal"
-            title="Set Humidity stay at"
-            :padding="false"
-          >
+          <f7-card class="bg-color-teal" title="Set Humidity stay at" :padding="false">
             <f7-list-item>
-              <f7-list-input
-                floating-label
-                label="Value"
-                placeholder="Value"
-                type="number"
-                outline
-              ></f7-list-input>
+              <f7-list-input floating-label label="Value" placeholder="Value" type="number" outline></f7-list-input>
               <f7-toggle color="blue"></f7-toggle>
             </f7-list-item>
           </f7-card>
@@ -199,49 +167,53 @@
           <f7-card class="bg-color-teal" title="Setting Time">
             <f7-list class="list-container">
               <f7-list-input
-                class=""
+                class
                 floating-label
                 label="Start"
                 type="time"
                 outline
                 :value="setTime.start"
                 @input="setTime.start = e.target.value"
-                ><f7-icon
+              >
+                <!-- <f7-icon
                   icon="demo-list-icon"
                   slot="media"
-                ></f7-icon></f7-list-input
-              ><f7-list-input
-                class=""
+                ></f7-icon>-->
+              </f7-list-input>
+              <f7-list-input
+                class
                 floating-label
                 label="work"
                 type="time"
                 outline
                 :value="setTime.work"
                 @input="setTime.work = e.target.value"
-                ><f7-icon icon="demo-list-icon" slot="media"></f7-icon
-              ></f7-list-input>
+              >
+                <!-- <f7-icon icon="demo-list-icon" slot="media">
+                </f7-icon-->
+                >
+              </f7-list-input>
               <f7-list-input
-                class=""
+                class
                 floating-label
                 label="Delay"
                 type="time"
                 outline
                 :value="setTime.delay"
                 @input="setTime.delay = e.target.value"
-                ><f7-icon icon="demo-list-icon" slot="media"></f7-icon
-              ></f7-list-input>
+              >
+                <!-- <f7-icon icon="demo-list-icon" slot="media"></f7-icon
+                >-->
+              </f7-list-input>
             </f7-list>
             <f7-list-item>
               <span></span>
-              <f7-button outline class="bg-color-primary text-color-black"
-                >add</f7-button
-              >
+              <f7-button outline class="bg-color-primary text-color-black">add</f7-button>
             </f7-list-item>
           </f7-card>
 
           <!-- list timer -->
           <f7-block-title></f7-block-title>
-         
 
           <div class="data-table data-table-init card bg-color-teal">
             <!-- Card header -->
@@ -280,17 +252,11 @@
                     </th>
                     <f7-card no-hairlines>
                       <f7-list-item>
-                        <f7-list-item outlined>
-                          start : {{ item.start }}
-                        </f7-list-item>
-                        <f7-list-item outlined>
-                          work : {{ item.worked }}</f7-list-item
-                        >
+                        <f7-list-item outlined>start : {{ item.start }}</f7-list-item>
+                        <f7-list-item outlined>work : {{ item.worked }}</f7-list-item>
                       </f7-list-item>
-                      <f7-list-item class="">
-                        <f7-list-item outlined>
-                          delay : {{ item.delay }}
-                        </f7-list-item>
+                      <f7-list-item class>
+                        <f7-list-item outlined>delay : {{ item.delay }}</f7-list-item>
 
                         <f7-toggle color="blue"></f7-toggle>
                       </f7-list-item>

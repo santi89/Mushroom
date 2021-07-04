@@ -4,16 +4,17 @@
     <f7-navbar :sliding="false">
       <f7-nav-title class="">Mushroom App</f7-nav-title>
       <f7-nav-right>
-        <f7-link popover-open=".popover-noti">
+        <f7-link href="/notificate/">
           <f7-icon
             ios="f7:bell_circle"
             aurora="f7:bell_circle"
             md="material:notifications"
           >
-             <f7-badge color="red">5</f7-badge>
+            <f7-badge color="red">5</f7-badge>
           </f7-icon>
         </f7-link>
         <f7-link
+          href
           panel-open="right"
           icon-ios="f7:menu"
           icon-aurora="f7:menu"
@@ -22,17 +23,16 @@
         ></f7-link>
       </f7-nav-right>
     </f7-navbar>
-    <!-- popover list notice -->
-    <f7-popover class="popover-noti">
-      <f7-list>
-        <f7-list-item link="#" popover-close title="Dialog"></f7-list-item>
-        <f7-list-item link="#" popover-close title="Tabs"></f7-list-item>
-        <f7-list-item link="#" popover-close title="Side Panels"></f7-list-item>
-        <f7-list-item link="#" popover-close title="List View"></f7-list-item>
-        <f7-list-item link="#" popover-close title="Form Inputs"></f7-list-item>
-      </f7-list>
-    </f7-popover>
-
+    <!-- panal for notifications -->
+    <f7-panel top>
+      <f7-view>
+        <f7-page>
+          <f7-list>
+            <f7-list-item> </f7-list-item>
+          </f7-list>
+        </f7-page>
+      </f7-view>
+    </f7-panel>
     <!-- Left panel with cover effect-->
     <f7-panel right cover theme-dark>
       <f7-view>
@@ -81,6 +81,8 @@
   </f7-page>
 </template>
 <script>
+import store from "../../store/index";
+import get_projects from "../../js/script/get/get_projects";
 export default {
   data() {
     return {
@@ -91,6 +93,9 @@ export default {
   },
   methods: {
     Findprojectname() {},
+    logout() {
+      this.$store.dispatch("AUTH_LOGOUT");
+    },
   },
 };
 </script>

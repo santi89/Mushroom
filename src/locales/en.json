@@ -1,8 +1,156 @@
-{
-   "language": "English",
-   "done": "Done",
-   "back": "'Back'",
-   "loading": "'loading...'",
-   "error": "'Error'"
+ {
+     
 
-}
+     " add_action": "Add Action",
+      "add_value": "Add Value",
+      "add": "Add",
+      "about": "About",
+      "actions": "Actions",
+      "admin": "Admin",
+      "about_page": "About Page",
+      "add_role": "Add Role",
+      "add_dep": "Add Department",
+      "all_users": "All Users",
+      "add_dt": "Add device type",
+      "add_device": "Add devices",
+      "add_unit": "Add Unit",
+      "add_hd": "Add Head Data",
+      "add_td": "Add Track Data",
+      "action_name": "Action Name",
+      "advance": "Advance",
+    
+      "buildby": "Built by",
+    
+      "choosetime": "Choosetime",
+      "choosedate": "ChooseDate",
+      "create_project": "Create Project",
+      "create_track": "Create Track",
+      "cancel": "Cancel",
+      "create_action": "Create Action",
+      "choose_advanceTime": "Choose AdvanceTime:",
+      "choose_device": "Choose Device",
+      
+      "devby": "Develop By",
+      "department_relate": "Department Relate",
+      "department_table": "Department Table",
+      "datebuilt": "Date Built",
+      "dateExpire": "Date Expire",
+      "device_type": "Device Type",
+      "dashboard": "Dashboard",
+      "department": "Department",
+      "devices": "Devices",
+      "device_report": "Device Report",
+      "detail": "Detail",
+      "delete": "Delete",
+      "duration": "Duration",
+      
+      "edit_unit": "Edit Unit",
+      "email": "email",
+      "edit_profile": "Edit Profile",
+      "edit_role": "Edit Role",
+      "edit_dep": "Edit Department",
+      "edit_user": "Edit User",
+      "edit_dt": "Edit device type",
+      "edit_device": "Edit devices",
+      "edit_hd": "Edit Head Data",
+      "edit_department_relate": "Edit department relate",
+      "edit_action": "Edit Action",
+      "edit_track": "Edit Track",
+      "enddate": "End Date",
+     
+      "find_users": "Find Users",
+      "forgot_password": "For got Password?",
+     
+      "graphview": "Graph View",
+      "gpio": "GPIO",
+    
+      "homepage": "Home Page",
+      "head_data": "Head Data",
+     
+
+      
+      "inputlastname": "Enter Lastname",
+      "inputname": "Enter Name",
+      "inforProject": "Information Project",
+      "invite": "Invite",
+     
+      "lastname": "Lastname",
+      "Localtion_Project": "Location of Project",
+      "logout": "Logout",
+      "login": "Login",
+      "lange": "ປ່ຽນເປັນ ພາສາລາວ",
+      
+      "monthly": "Monthly",
+      "maps": "Map",
+      "my_profile": "My Profile",
+      "management": "Management",
+      "mamber_management": "Mambers Management",
+      "main": "Main",
+      "member_of": "Member Of",
+    
+      "name": "name",
+      "name_tack": "Name Track",
+      "notifications": "Notifications",
+     
+      "other": "Other",
+      "one_hours": "1 Hours",
+      "or": "Or",
+      
+      "purpose": "Purpose",
+      "password": "Password",
+      "pages": "Pages",
+      "project": "Projects",
+      "project_dashboard": "Project Dashboard",
+      "projects_management": "Projects Management ",
+      "project_track": "Project Track",
+      "password_less6": "Password (at least 6 characters)",
+      "projects_name": "Projects Name",
+      "projects_devices": "Devices Use",
+      
+      "role": "Role",
+      "register": "Register",
+      "readall": "Read All",
+      "report": "Report",
+     
+      "search": "Search",
+      "student_depart": "Student",
+      "signup": "Signup",
+      "status": "Status",
+      "super_admin": "Super Admin",
+      "settings": "Settings",
+      "save": "Save",
+      "select_head_track": "Select Head Track",
+      "select_option": "Select Option",
+      "select_action": "Select Action",
+      "select_role": "Add Role",
+      "selecet_project": "Select Project",
+      "select_time": "Select Time:",
+      "show_data": "Show Data",
+      "startdate": "Start Date",
+      
+      "topic_system": "ລະບົບຕິດຕາມ ແລະ ຈັດເກັບຂໍ້ມູນສະພາບອາກາດຂອງຄະນະກະເສດສາດ",
+      "topic": "Topic",
+      "tel_need": "Number (20xxxxxxxx)",
+      "teacher_depart": "Teacher",
+      "today": "Today",
+      "tableview": "Table View",
+      "track_data": "Track Data",
+      "tables": "Tables",
+      "time_work": "Time Work (S)",
+      "time_sleep": "Time Sleep (S)",
+      "track_name": "Track Name",
+     
+      "username": "Username",
+      "users": "Users",
+      "unit": "Unit",
+      "users_report": "Users Report",
+      "update": "Update",
+     
+      "weekly": "Weekly",
+      
+      "your_project": "Your Projects"
+     
+    }
+   
+
+

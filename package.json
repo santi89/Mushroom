@@ -25,6 +25,9 @@
     "Samsung >= 5"
   ],
   "dependencies": {
+    "axios": "^0.21.1",
+    "axios-auth-refresh": "^3.1.0",
+    "core-js": "^3.14.0",
     "dom7": "^3.0.0",
     "framework7": "^6.0.17",
     "framework7-icons": "^4.0.2",

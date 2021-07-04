@@ -9,7 +9,7 @@
   "bundler": "webpack",
   "cssPreProcessor": false,
   "theming": {
-    "customColor": false,
+    "customColor": true,
     "color": "#007aff",
     "darkTheme": false,
     "iconFonts": true,
