@@ -1,4 +1,5 @@
-import HomePage from "../pages/manage/home.vue";
+// import HomePage from "../pages/manage/home.vue";
+import ProjectView from "../pages/manage/projectView.vue";
 import AboutPage from "../pages/about.vue";
 import FormPage from "../pages/form.vue";
 import LogIn from "../pages/auth/login.vue";
@@ -14,9 +15,13 @@ import RequestAndLoad from "../pages/request-and-load.vue";
 import NotFoundPage from "../pages/404.vue";
 
 var routes = [
+  // {
+  //   path: "/",
+  //   component: HomePage,
+  // },
   {
-    path: "/",
-    component: HomePage,
+    path: "/ProjectView",
+    component: ProjectView,
   },
   {
     path: "/notificate/",

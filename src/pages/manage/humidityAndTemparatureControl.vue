@@ -12,8 +12,8 @@
       <f7-tab id="tab-humidity" class="page-content" tab-active>
         <f7-list>
           <f7-card class="bg-color-teal" title="ON/OFF Manual">
-            <f7-list-item>
-              <span>ON/OFF</span>
+            <f7-list-item >
+              <f7-list-input class="col-3" label="ເວລາເປີດ/ປິດ" type="time" outline ></f7-list-input>
               <f7-toggle color="blue"></f7-toggle>
             </f7-list-item>
           </f7-card>
@@ -32,9 +32,10 @@
                 label="Start"
                 type="time"
                 outline
-                :value="setTime.start"
-                @input="setTime.start = e.target.value"
+                v-model="setTime.start"
               >
+                <!-- :value="setTime.start"
+                @input="setTime.start = e.target.value" -->
                 <f7-icon icon="demo-list-icon"></f7-icon>
               </f7-list-input>
               <f7-list-input
@@ -42,20 +43,17 @@
                 label="Worked"
                 type="time"
                 outline
-                :value="setTime.work"
-                @input="setTime.work = e.target.value"
+               v-model="setTime.worked"
               >
                 <f7-icon icon="demo-list-icon"></f7-icon>
               </f7-list-input>
 
               <f7-list-input
                 class
-                floating-label
                 label="Delay"
                 type="time"
                 outline
-                :value="setTime.delay"
-                @input="setTime.delay = e.target.value"
+                v-model="setTime.delay"
               >
                 <f7-icon icon="demo-list-icon"></f7-icon>
               </f7-list-input>
@@ -150,8 +148,8 @@
       <f7-tab id="tab-Temperature" class="page-content">
         <f7-list>
           <f7-card class="bg-color-teal" title="ON/OFF Manual">
-            <f7-list-item>
-              <span>ON/OFF</span>
+            <f7-list-item >
+              <f7-list-input label="ເວລາເປີດ/ປິດ" type="time" ></f7-list-input>
               <f7-toggle color="blue"></f7-toggle>
             </f7-list-item>
           </f7-card>
@@ -165,15 +163,14 @@
           </f7-card>
           <!-- time setting -->
           <f7-card class="bg-color-teal" title="Setting Time">
-            <f7-list class="list-container">
+            <f7-list class="list-container" inline-labels>
               <f7-list-input
                 class
-                floating-label
+                
                 label="Start"
                 type="time"
                 outline
-                :value="setTime.start"
-                @input="setTime.start = e.target.value"
+                v-model="setTime.start"
               >
                 <!-- <f7-icon
                   icon="demo-list-icon"
@@ -182,12 +179,11 @@
               </f7-list-input>
               <f7-list-input
                 class
-                floating-label
                 label="work"
                 type="time"
                 outline
-                :value="setTime.work"
-                @input="setTime.work = e.target.value"
+            v-model="setTime.start"
+
               >
                 <!-- <f7-icon icon="demo-list-icon" slot="media">
                 </f7-icon-->
@@ -195,12 +191,11 @@
               </f7-list-input>
               <f7-list-input
                 class
-                floating-label
                 label="Delay"
                 type="time"
                 outline
-                :value="setTime.delay"
-                @input="setTime.delay = e.target.value"
+                 v-model="setTime.start"
+
               >
                 <!-- <f7-icon icon="demo-list-icon" slot="media"></f7-icon
                 >-->
@@ -289,6 +284,17 @@ export default {
         },
       ],
       calendarDateTime: "",
+    on_off_timeH:"",
+    on_off_timeT:"",
+    stay_H:"",
+    stay_T:"",
+    start_H:[],
+    worked_H:[],
+    delay_H:[],
+    start_T:[],
+    worked_T:[],
+    delay_T:[]
+
     };
   },
 

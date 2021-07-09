@@ -60,7 +60,7 @@
         <f7-block strong class="text-align-center">
           <f7-row>
             <f7-col>
-              <f7-button outline href="/" class="btn-login" round
+              <f7-button outline  class="btn-login" round @click="login()"
                 >Login</f7-button>
               <!-- <f7-button outline @click="login()" class="btn-login" round>Login</f7-button> -->
             </f7-col>
@@ -153,58 +153,29 @@ export default {
           }
 
           if (Response.status === 201) {
-            // const token = await Response.data.token;
-            // localStorageService.setToken(Response.data);
-            // await localStorage.setItem(
-            //   "info-user",
-            //   JSON.stringify(Response.data.results[0])
-            // );
-            // await localStorage.setItem(
-            //   "ispa",
-            //   Response.data.results[0].isSuperUser
-            // );
-            // setTimeout(() => {
-            //   this.fecth();
-            //   this.$router.push({ name: "Main" });
-            // }, 100);
-            // await store.commit("AUTH_SUCCESS", token);
-            // await store.commit("ISPA", Response.data.results[0].isSuperUser);
-            console.log("loggedin");
+            const token = await Response.data.token;
+            localStorageService.setToken(Response.data);
+            await localStorage.setItem(
+              "info-user",
+              JSON.stringify(Response.data.results[0])
+            );
+            await localStorage.setItem(
+              "ispa",
+              Response.data.results[0].isSuperUser
+            );
+            setTimeout(() => {
+              this.fecth();
+              this.$router.push({ name: "ProjectView" });
+            }, 100);
+            await store.commit("AUTH_SUCCESS", token);
+            await store.commit("ISPA", Response.data.results[0].isSuperUser);
+            //console.log("loggedin");
           }
         })
         .catch((err) => {
           localStorageService.clearToken();
           return err;
         });
-    },
-    fecth() {
-      const user = JSON.parse(localStorage.getItem("info-user"));
-      try {
-        if (user.isSuperUser === 0) {
-          http
-            .get("/api/users/admin", { params: { user_id: user.user_id } })
-            .then((Response) => {
-              const data = Response.data;
-              //console.log(data);
-              store.commit("Tables/SET_TABLE_PROJECTS", data);
-            })
-            .catch(() => {});
-        }
-        if (user.isSuperUser === 1) {
-          http
-            .get("/api/project")
-            .then((Response) => {
-              const data = Response.data;
-              store.commit("Tables/SET_TABLE_PROJECTS", data);
-              //console.log(data);
-            })
-            .catch(() => {
-              //console.log("ERROR:", err);
-            });
-        }
-      } catch (error) {
-        return;
-      }
     },
   },
 };

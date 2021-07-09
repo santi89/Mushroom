@@ -156,7 +156,7 @@ export default {
             this.msg = msg;
             this.sheet = true;
           } else if (Response.data.STT === "DONE") {
-            this.$router.push("/login")
+            this.$router.push("/login/")
           }
         })
         .catch(() => {});

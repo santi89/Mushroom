@@ -7,8 +7,10 @@
         class="image--cover"
         :src="image_url"
         alt=""
-        :change="launchFilePicker"
       />
+      <f7-list-item>
+        {{ username }}
+      </f7-list-item>
     </div>
     <f7-block>
       <f7-button outline popup-open=".demo-edit" :onclick="!editImg">
@@ -22,13 +24,12 @@
       />
     </f7-block>
 
-    <f7-list no-hairlines-md >
-      <f7-list-item link="" title="FirstName:" :after="user.firstname" ></f7-list-item>
-      <f7-list-item title="FirstName:">{{ user.firstname }}</f7-list-item>
-      <f7-list-item title="LastName:">{{ user.lastname }}</f7-list-item>
+    <f7-list no-hairlines-md>
+      <f7-list-item title="FirstName:">{{ firstname }}</f7-list-item>
+      <f7-list-item title="LastName:">{{ lastname }}</f7-list-item>
       <!-- <f7-list-item title="userName:">{{ user.username }}</f7-list-item> -->
-      <f7-list-item title="email:">{{ user.email }}</f7-list-item>
-      <f7-list-item title="phone:">{{ user.phone }}</f7-list-item>
+      <f7-list-item title="email:">{{ email }}</f7-list-item>
+      <f7-list-item title="phone:">{{ phone }}</f7-list-item>
     </f7-list>
     <!-- pop up edit -->
     <f7-popup
@@ -47,8 +48,8 @@
             <f7-list-input
               required
               floating-label
-              :value="user.firstname"
-              @input="user.firstname = $event.target.value"
+              :value="firstname"
+              @input="firstname = $event.target.value"
               label="FirstName"
               type="text"
               placeholder="Your FirstName"
@@ -57,15 +58,15 @@
             </f7-list-input>
             <f7-list-input
               floating-label
-              :value="user.lastname"
-              @input="user.lastname = $event.target.value"
+              :value="lastname"
+              @input="lastname = $event.target.value"
               label="LastName"
               type="text"
               placeholder="Your LastName"
               clear-button
             >
             </f7-list-input>
-            <!-- <f7-list-input
+            <f7-list-input
               floating-label
               :value="user.email"
               @input="user.email = $event.target.value"
@@ -75,11 +76,11 @@
               required
               clear-button
             >
-            </f7-list-input> -->
+            </f7-list-input>
             <f7-list-input
               floating-label
-              :value="user.phone"
-              @input="user.phone = $event.target.value"
+              :value="phone"
+              @input="phone = $event.target.value"
               label="Phone"
               type="text"
               placeholder="Your Phone Number"
@@ -90,14 +91,10 @@
           </f7-list>
         </f7-block>
         <f7-block>
-          <f7-button @click="submitEdit" outline strong>Add</f7-button>
+          <f7-button @click="submitEdit" outline strong>Update</f7-button>
         </f7-block>
       </f7-page>
     </f7-popup>
-
-
-
-
   </f7-page>
 </template>
 
@@ -112,32 +109,53 @@ export default {
       //    "https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png",
       editImg: false,
       popupOpened: false,
-      user: {
-        firstname: "santi",
-        lastname: "bm",
-        username: "santi",
-        password: "123456",
-        email: "aafa@fdsfsd",
-        phone: "020",
-        image: "",
-      },
+
+      firstname: "",
+      lastname: "",
+      username: "",
+      password: "",
+      email: "",
+      phone: "",
+      dep: [],
     };
   },
   methods: {
-    // onfilechange: (e) => {
-    //   var files = e.taget.files;
-    //   if (!files.length) {
-    //     return;
-    //     createImage(files[0]);
-    //   }
-    // },
-    // createImage(files) {
-    //   var reader = new FileReader();
-    //   reader.onload = (e) => {
-    //     this.image = e.target.result;
-    //   };
-    //   reader.readAsDataURL(files);
-    // },
+    update: function () {
+      const user = JSON.parse(localStorage.getItem("info-user"));
+      const data = {
+        user_id: this.user_id,
+        username: this.username,
+        email: this.email,
+        firstname: this.firstname,
+        lastname: this.lastname,
+        dep_name: this.department,
+        status: this.status,
+        phone: this.phone,
+        isSuperUser: user.isSuperUser,
+        stt: 1,
+      };
+      confirm("ຕ້ອງການແກ້ໄຂກົດ OK  ") &&
+        http
+          .put("/api/users", data)
+          .then((Response) => {
+            if (Response.status === 201) {
+              localStorage.setItem("info-user", JSON.stringify(data));
+              window.location.reload();
+            }
+          })
+          .catch(() => {});
+    },
+    fecth_dep() {
+      http
+        .get("/api/dep/sig")
+        .then((Response) => {
+          this.dep = Response;
+        })
+        .catch((err) => {
+          return err;
+        });
+    },
+
     submitEdit() {
       popup - close;
     },
@@ -153,14 +171,21 @@ export default {
         title: user.username,
         email: user.email,
         phone: user.phone,
-
       };
-      },
+    },
   },
   created() {
+    this.fecth_dep();
+    const user = JSON.parse(localStorage.getItem("info-user"));
+    this.username = user.username;
+    this.email = user.email;
+    this.firstname = user.firstname;
+    this.lastname = user.lastname;
+    this.department = user.dep_name;
+    this.status = user.status;
+    this.phone = user.phone;
   },
   mounted() {
-    get_users.fatch();
   },
 };
 </script>
