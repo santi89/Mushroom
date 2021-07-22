@@ -1,4 +1,3 @@
-// import HomePage from "../pages/manage/home.vue";
 import ProjectView from "../pages/manage/projectView.vue";
 import AboutPage from "../pages/about.vue";
 import FormPage from "../pages/form.vue";
@@ -9,19 +8,17 @@ import AddProject from "../pages/manage/addProject.vue";
 import Devicelist from "../pages/manage/devicelist.vue";
 import Notificate from "../pages/manage/notifications.vue";
 import humidityAndtemparature from "../pages/manage/humidityAndTemparatureControl.vue";
-
 import DynamicRoutePage from "../pages/dynamic-route.vue";
 import RequestAndLoad from "../pages/request-and-load.vue";
 import NotFoundPage from "../pages/404.vue";
+import Report from "../pages/manage/report.vue";
 
 var routes = [
-  // {
-  //   path: "/",
-  //   component: HomePage,
-  // },
   {
-    path: "/ProjectView",
+    path: "/ProjectView/",
     component: ProjectView,
+    name: "ProjectView",
+    props: true,
   },
   {
     path: "/notificate/",
@@ -32,6 +29,10 @@ var routes = [
     component: AboutPage,
   },
   {
+    path: "/report/",
+    component: Report,
+  },
+  {
     path: "/login/",
     component: LogIn,
   },
@@ -40,8 +41,9 @@ var routes = [
     component: Profile,
   },
   {
-    path: "/humidityAndtemparature/",
+    path: "/humidityAndtemparature/:sub_id",
     component: humidityAndtemparature,
+    props: true,
   },
   {
     path: "/addproject/",
@@ -49,8 +51,9 @@ var routes = [
   },
 
   {
-    path: "/devicelist/",
+    path: "/devicelist/:pro_id/",
     component: Devicelist,
+    props: true,
   },
   {
     path: "/signup/",

@@ -1,7 +1,6 @@
 <template>
   <f7-page name="signin" theme-teal>
     <f7-page no-hairlines-md>
-
       <!-- <div class="langchange">
         <f7-row>
           <f7-col></f7-col>
@@ -16,7 +15,7 @@
         </select></f7-col>
         </f7-row>
       </div> -->
-      
+
       <div class="wrapper">
         <img
           class="image--cover"
@@ -28,16 +27,18 @@
       <f7-login-screen-title>Login</f7-login-screen-title>
 
       <f7-block no-hairlines>
-        <f7-list Strong >
+        <f7-list Strong>
           <f7-list-input
             floating-label
             :value="user.username"
             @input="user.username = $event.target.value"
             label="Username"
             type="text"
-            outline            
+            outline
             clear-button
           >
+            <!-- :value="user.username"
+            @input="user.username = $event.target.value" -->
           </f7-list-input>
           <f7-list-input
             floating-label
@@ -46,7 +47,7 @@
             @input="user.password = $event.target.value"
             label="Password"
             type="password"
-                    clear-button
+            clear-button
           >
             <!-- :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="() => (value = !value)" -->
@@ -60,8 +61,9 @@
         <f7-block strong class="text-align-center">
           <f7-row>
             <f7-col>
-              <f7-button outline  class="btn-login" round @click="login()"
-                >Login</f7-button>
+              <f7-button outline class="btn-login bg-color-teal text-color-white" round @click="login()"
+                >Login</f7-button
+              >
               <!-- <f7-button outline @click="login()" class="btn-login" round>Login</f7-button> -->
             </f7-col>
             <f7-col>
@@ -86,59 +88,28 @@
 <script>
 import { http } from "../../js/http";
 import LocalStorageService from "../../js/script/ServiceLocalStorage";
-
+//import { f7ready } from "framework7-vue";
+// import { f7 } from "framework7-vue";
 const localStorageService = LocalStorageService.getService();
 export default {
+     props: {
+      f7router: Object,
+    },
   data() {
     return {
       value: "",
       user: {
-        email: null,
-        username: null,
-        password: null,
+        username: "santi",
+        password: "s96616118",
       },
     };
   },
   methods: {
-    // login() {
-    //   http
-    //     .post("/api/login", {
-    //       username: this.user.username,
-    //       password: this.user.password,
-    //     })
-    //     .then(async (Response) => {
-    //       const has = await Response.data;
-    //       if (Response.status === 200) {
-    //         const msg = await has.STT;
-    //         this.msg = msg;
-    //         this.sheet = true;
-    //       }
-
-    //       if (Response.status === 201) {
-    //         const token = await Response.data.token;
-    //         localStorageService.setToken(Response.data);
-    //         await localStorage.setItem(
-    //           "info-user",
-    //           JSON.stringify(Response.data.results[0])
-    //         );
-    //         await localStorage.setItem(
-    //           "ispa",
-    //           Response.data.results[0].isSuperUser
-    //         );
-    //         setTimeout(() => {
-    //           // this.fecth();
-    //           this.$router.push({ path: "/"});
-    //         }, 100);
-    //         await store.commit("AUTH_SUCCESS", token);
-    //         await store.commit("ISPA", Response.data.results[0].isSuperUser);
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       localStorageService.clearToken();
-    //       return err;
-    //     });
-    // },
     login() {
+      var _this=this;
+      console.log(this);
+ 
+    //  _this.$f7router.navigate('/ProjectView/');
       http
         .post("/api/login", {
           username: this.user.username,
@@ -150,9 +121,13 @@ export default {
             const msg = await has.STT;
             this.msg = msg;
             this.sheet = true;
+            // console.log("have sothing");
+           
           }
-
           if (Response.status === 201) {
+            // console.log("loggedin");
+            
+            var _seft=_this;
             const token = await Response.data.token;
             localStorageService.setToken(Response.data);
             await localStorage.setItem(
@@ -160,22 +135,51 @@ export default {
               JSON.stringify(Response.data.results[0])
             );
             await localStorage.setItem(
-              "ispa",
-              Response.data.results[0].isSuperUser
-            );
-            setTimeout(() => {
-              this.fecth();
-              this.$router.push({ name: "ProjectView" });
-            }, 100);
+              "ispa", 
+              Response.data.results[0].isSuperUser  
+            ); 
+             this.f7router.navigate('/ProjectView/');
+
+            //_seft.$f7router.navigate('/ProjectView/');
+            // this.$f7router.navigate("/ProjectView/");
             await store.commit("AUTH_SUCCESS", token);
             await store.commit("ISPA", Response.data.results[0].isSuperUser);
-            //console.log("loggedin");
+            console.log("loggeding");
           }
         })
         .catch((err) => {
           localStorageService.clearToken();
           return err;
         });
+    },
+    fecth() {
+      const user = JSON.parse(localStorage.getItem("info-user"));
+      try {
+        if (user.isSuperUser === 0) {
+          http
+            .get("/api/users/admin", { params: { user_id: user.user_id } })
+            .then((Response) => {
+              const data = Response.data;
+              //console.log(data);
+              store.commit("Tables/SET_TABLE_PROJECTS", data);
+            })
+            .catch(() => {});
+        }
+        if (user.isSuperUser === 1) {
+          http
+            .get("/api/project")
+            .then((Response) => {
+              const data = Response.data;
+              store.commit("Tables/SET_TABLE_PROJECTS", data);
+              //console.log(data);
+            })
+            .catch(() => {
+              //console.log("ERROR:", err);
+            });
+        }
+      } catch (error) {
+        return;
+      }
     },
   },
 };
@@ -207,7 +211,7 @@ export default {
   position: relative;
   align-self: right;
   margin: 5px 5px;
-  margin-top:10px;
-  object-position:right;
+  margin-top: 10px;
+  object-position: right;
 }
 </style>

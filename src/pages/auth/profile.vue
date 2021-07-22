@@ -5,12 +5,9 @@
     <div class="wrapper">
       <img
         class="image--cover"
-        :src="image_url"
+        src="https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png"
         alt=""
       />
-      <f7-list-item>
-        {{ username }}
-      </f7-list-item>
     </div>
     <f7-block>
       <f7-button outline popup-open=".demo-edit" :onclick="!editImg">
@@ -68,8 +65,8 @@
             </f7-list-input>
             <f7-list-input
               floating-label
-              :value="user.email"
-              @input="user.email = $event.target.value"
+              :value="email"
+              @input="email = $event.target.value"
               label="E-mail"
               type="email"
               placeholder="Your e-mail"
@@ -91,7 +88,7 @@
           </f7-list>
         </f7-block>
         <f7-block>
-          <f7-button @click="submitEdit" outline strong>Update</f7-button>
+          <f7-button @click="update()" outline strong>Update</f7-button>
         </f7-block>
       </f7-page>
     </f7-popup>
@@ -99,6 +96,7 @@
 </template>
 
 <script>
+import { http } from "../../js/http";
 import { f7 } from "framework7-vue";
 import get_users from "../../js/script/get/get_users";
 
@@ -109,35 +107,35 @@ export default {
       //    "https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png",
       editImg: false,
       popupOpened: false,
-
+      dep: [],
       firstname: "",
       lastname: "",
       username: "",
       password: "",
       email: "",
       phone: "",
-      dep: [],
+      department: "",
     };
   },
   methods: {
     update: function () {
       const user = JSON.parse(localStorage.getItem("info-user"));
       const data = {
-        user_id: this.user_id,
-        username: this.username,
-        email: this.email,
-        firstname: this.firstname,
-        lastname: this.lastname,
-        dep_name: this.department,
-        status: this.status,
-        phone: this.phone,
-        isSuperUser: user.isSuperUser,
-        stt: 1,
+        "user_id": this.user_id,
+        "username": this.username,
+        "email": this.email,
+        "firstname": this.firstname,
+        "lastname": this.lastname,
+        "dep_name": this.department,
+        "status": this.status,
+        "phone": this.phone,
+        "isSuperUser": user.isSuperUser,
+        "stt": 1,
       };
-      confirm("ຕ້ອງການແກ້ໄຂກົດ OK  ") &&
+      confirm("ຕ້ອງການແກ້ໄຂກົດ OK ") &&
         http
           .put("/api/users", data)
-          .then((Response) => {
+          .then((Response) => {    
             if (Response.status === 201) {
               localStorage.setItem("info-user", JSON.stringify(data));
               window.location.reload();
@@ -155,25 +153,16 @@ export default {
           return err;
         });
     },
-
-    submitEdit() {
-      popup - close;
-    },
+    // ss() {
+    //   console.log("aa" + this.firstname);
+    //   console.log("aa" + this.lastname);
+    //   console.log("aa" + this.username);
+    //   console.log("aa" + this.email);
+    //   console.log("aa" + this.firstname);
+    //   console.log("aa" + this.department);
+    // },
   },
-  computed: {
-    profile() {
-      const user = JSON.parse(localStorage.getItem("info-user"));
-      //console.log(user.isSuperUser);
-      return {
-        avatar: true,
-        firstname: user.firstname,
-        lastname: user.lastname,
-        title: user.username,
-        email: user.email,
-        phone: user.phone,
-      };
-    },
-  },
+  computed: {},
   created() {
     this.fecth_dep();
     const user = JSON.parse(localStorage.getItem("info-user"));
@@ -186,6 +175,14 @@ export default {
     this.phone = user.phone;
   },
   mounted() {
+    // const user = JSON.parse(localStorage.getItem("info-user"));
+    // this.username = user.username;
+    // this.email = user.email;
+    // this.firstname = user.firstname;
+    // this.lastname = user.lastname;
+    // // this.department = user.dep_name;
+    // this.status = user.status;
+    // this.phone = user.phone;
   },
 };
 </script>

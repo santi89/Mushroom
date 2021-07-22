@@ -166,16 +166,20 @@
             <f7-list class="list-container" inline-labels>
               <f7-list-input
                 class
-                
+                label="ວັນທີ"
+                type="datepicker"
+                outline
+                v-model="setTime.date"
+              >              
+              </f7-list-input>
+              <f7-list-input
+                class
                 label="Start"
                 type="time"
                 outline
                 v-model="setTime.start"
               >
-                <!-- <f7-icon
-                  icon="demo-list-icon"
-                  slot="media"
-                ></f7-icon>-->
+                
               </f7-list-input>
               <f7-list-input
                 class
@@ -185,9 +189,6 @@
             v-model="setTime.start"
 
               >
-                <!-- <f7-icon icon="demo-list-icon" slot="media">
-                </f7-icon-->
-                >
               </f7-list-input>
               <f7-list-input
                 class
@@ -288,6 +289,7 @@ export default {
     on_off_timeT:"",
     stay_H:"",
     stay_T:"",
+    date_H:[],
     start_H:[],
     worked_H:[],
     delay_H:[],

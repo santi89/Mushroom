@@ -14,15 +14,6 @@
         @input="project_name = $event.target.value"
         required
       ></f7-list-input>
-      <f7-list-item
-        :items="tables.users"
-        disabled
-        type="text"
-        :value="project_admin"
-        @input="project_admin = $event.target.value"
-        item-value="user_id"
-        item-text="username"
-      ></f7-list-item>
       <f7-list-input
         outline
         placeholder="Longitube"
@@ -46,8 +37,8 @@
         outline
         label="time Start"
         type="Date"
-        :value="projects.timestart"
-        @input="projects.timestart = $event.target.value"
+        :value="timestart"
+        @input="timestart = $event.target.value"
       ></f7-list-input>
 
       <f7-list-input
@@ -55,8 +46,8 @@
         outline
         label="time end"
         type="Date"
-        :value="projects.timeend"
-        @input="projects.timeend = $event.target.value"
+        :value="timeend"
+        @input="timeend = $event.target.value"
       ></f7-list-input> -->
 
       <f7-list-input
@@ -79,43 +70,47 @@
     </f7-list>
 
     <f7-block>
-      <f7-button outline Click="showdata">add</f7-button>
+      <f7-button outline @Click="test">add</f7-button>
     </f7-block>
   </f7-page>
 </template>
 
 <script>
+import { f7 } from "framework7-vue";
 import { http } from "../../http";
-import get_users from "../../js/script/get/get_users";
 import { mapState } from "vuex";
 // ດ້ານ api ມັນໃຫ້ໃສ່ ອຸປະກອນ ແຕ່ໃນນີ້ບໍ່ມີກະໄດ້ ເຮັດແນວເລີ
 export default {
+  
   data() {
     return {
       dep: [],
-      device: [],
       date: [],
       gpio_type: ["Input", "Output"],
-      project_name: null,
-      project_admin: null,
-      project_device: [],
-      dep_name: "anyperson",
-      longitube: null,
-      latitube: null,
+      project_name: "",
+      project_admin: "",
+      dep_name: "ພາກວິຊາປູກຝັງ",
+      longitube: "",
+      latitube: "",
+      msg:"",
     };
   },
-  created: {
+  created() {},
+  mounted() {
+    this.fecth_dep();
+    const user = JSON.parse(localStorage.getItem("info-user"));
+      this.project_admin= user.user_id;
+    
+  },
+  computed: {
     ...mapState("Tables", ["tables"]),
   },
-  mounted() {
-    get_users.fecth();
-    this.fecth_dep();
-    this.fecth_device();
-  },
-  computed:{
-   
-      },
   methods: {
+    test() {
+      console.log(this.dep_name);
+    //console.log(user.isSuperUser);
+
+    },
     fecth_dep: function () {
       http
         .get("/api/dep/sig")
@@ -126,36 +121,24 @@ export default {
           return err;
         });
     },
-    fecth_device: function () {
-      http
-        .get("/api/project/add-device")
-        .then((Response) => {
-          this.device = Response.data;
-        })
-        .catch((err) => {
-          return err;
-        });
-    },
     addProject() {
       var data = {
         project_name: this.project_name,
         project_admin: this.project_admin,
-        project_device: this.project_device,
-        dep_name: this.dep_name,
+        dep_name: this.dep.dep_id,
         date: this.date,
         longitube: this.longitube,
         latitube: this.latitube,
       };
       http
-        .post("/api/project", data)
+        .post("/api/mushroom_project", data)
         .then((Response) => {
           if (Response.status === 201) {
             this.msg = Response.data.stt;
-            this.sheet1 = true;
+            f7.dialog.alert("Done", "ການເພີ່ມສຳເລັດ");
           }
           if (Response.status === 200) {
             this.msg = Response.data.stt;
-            this.sheet = true;
           }
         })
         .catch(() => {});

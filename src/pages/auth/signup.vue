@@ -1,15 +1,15 @@
 <template>
-  <f7-page name="signup" bg-color-teal>
+  <f7-page name="signup">
     <!-- <f7-navbar title="Sign up" back-link="back" ></f7-navbar> -->
 
     <!-- <div class="wrapper">
       <img class="image--cover" :src="image_url" @click="launchFilePicker" />
     </div> -->
+
     <f7-block>
       <div style="text-align: center">
         <h1>Sign Up</h1>
       </div>
-
       <f7-list no-hairlines-md>
         <f7-list-input
           required
@@ -77,29 +77,26 @@
           clear-button
         >
         </f7-list-input>
-      <f7-list-item :value="dep[0]" @input="user.department =$event.target.value" disabled>
 
-      </f7-list-item>
+        <f7-block>
+          <f7-button outline round @click="signup">Sign up</f7-button>
+        </f7-block>
       </f7-list>
-      <f7-block>
-        <f7-button outline round @click="signup">Sign up</f7-button>
-      </f7-block>
-    </f7-block>
-    <f7-block>
       <div class="log-switch">
         Already have account. <f7-link href="/login/">Login </f7-link>
       </div>
-      <!-- <input
+    </f7-block>
+
+    <!-- <input
         type="file"
         ref="file"
         style="display: none"
         @change="onFilePicked"
       /> -->
-    </f7-block>
   </f7-page>
 </template>
 <script>
- import { http } from '@/http';
+import { http } from "@/http";
 export default {
   data() {
     return {
@@ -138,7 +135,7 @@ export default {
           username: this.user.username,
           password: this.user.password,
           status: this.user.status,
-          department: this.user.department,
+          department: this.dep[0],
           email: this.user.email,
           phone: this.user.phone,
         })
@@ -156,7 +153,7 @@ export default {
             this.msg = msg;
             this.sheet = true;
           } else if (Response.data.STT === "DONE") {
-            this.$router.push("/login/")
+            this.$router.push("/login/");
           }
         })
         .catch(() => {});

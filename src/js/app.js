@@ -18,6 +18,8 @@ import "../css/app.css";
 
 // Import App Component
 import App from "../components/app.vue";
+import routes from "../js/routes.js";
+
 
 // Init Framework7-Vue Plugin
 Framework7.use(Framework7Vue);
@@ -29,6 +31,7 @@ const app = createApp(App);
 registerComponents(app);
 
 app.use(store);
+app.use(routes)
 // app.use(i18n);
 
 // Mount the app
