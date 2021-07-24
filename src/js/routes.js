@@ -41,7 +41,8 @@ var routes = [
     component: Profile,
   },
   {
-    path: "/humidityAndtemparature/:sub_id",
+    path: "/humidityAndtemparature/:sub_id/",
+    // path: "/humidityAndtemparature/",
     component: humidityAndtemparature,
     props: true,
   },

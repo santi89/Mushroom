@@ -49,7 +49,12 @@
       </f7-card-header>
     </f7-card>
 
-    <f7-card class="bg-color-teal" v-for="(item, i) in device_data" :key="i">
+    <f7-card
+      class="bg-color-teal card-container"
+      
+      v-for="(item, i) in device_data"
+      :key="i"
+    >
       <f7-card-content>
         <f7-row style="align-items: center">
           <label class="checkbox">
@@ -66,15 +71,21 @@
             <f7-list>
               <f7-list-item
                 :title="item.device_name"
-                link="/humidityAndtemparature/"
+                @click="
+                  f7router.navigate(
+                    `/humidityAndtemparature/${item.device_id}/`
+                  )
+                "
+                link=""
               ></f7-list-item>
+              <!-- link="/humidityAndtemparature/" -->
             </f7-list>
           </div>
         </f7-row>
         <f7-row>
           <div class="col real-data">
             <f7-card class="c1">
-              <f7-tittle>{{ item.device_name }} °C</f7-tittle>
+              <span>{{ item.device_name }} °C</span>
             </f7-card>
           </div>
           <div class="col real-data">
@@ -202,8 +213,12 @@ export default {
 .real-data {
   text-align: center;
   height: 50px;
+  margin-bottom: 5px;
 }
 .c1 {
-  height: 20px;
+  height: inherit;
+  align-items: center;
+  margin-bottom: 5px;
+  font-size:25px;
 }
 </style>
